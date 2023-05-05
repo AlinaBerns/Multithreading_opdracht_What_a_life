@@ -1,6 +1,4 @@
 package be.intecbrussel.app;
-
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Person implements Runnable{
@@ -39,6 +37,7 @@ public class Person implements Runnable{
                 try {
                     int boundedRandomValue = ThreadLocalRandom.current().nextInt(0, 20);
                     System.out.println(boundedRandomValue);
+                    this.age ++;
                     if (boundedRandomValue == 13) {
                         break;
                     }
@@ -51,7 +50,7 @@ public class Person implements Runnable{
  }
 
     public void startLife() {
-     System.out.println(ANSI_GREEN + "Start life" + ANSI_RESET);
+     System.out.println(ANSI_GREEN + "Start life " + this.name + " age: " + this.age + ANSI_RESET);
         this.life.start();
         this.heart.start();
         this.breathing.start();
@@ -59,10 +58,15 @@ public class Person implements Runnable{
 
     public void endLife() {
 
-     System.out.println(ANSI_GREEN + "End life" + ANSI_RESET);
+     System.out.println(ANSI_GREEN + "End life " + this.name + " age: " + this.age + ANSI_RESET);
      this.life.interrupt();
      this.heart.interrupt();
      this.breathing.interrupt();
 
     }
+
+    public String getName() {
+        return name;
+    }
+
 }
