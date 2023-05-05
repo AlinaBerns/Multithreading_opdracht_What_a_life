@@ -12,6 +12,7 @@ public class Lungs extends Person implements Runnable{
     public Lungs() {
     }
 
+
     @Override
     public void run() {
         while (true) {
@@ -19,7 +20,8 @@ public class Lungs extends Person implements Runnable{
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    System.err.println("Something wrong...");
+                    System.err.println("Breathing stopped");
+                    break;
                 }
                 System.out.println(ANSI_BLUE + "Breathe in" + ANSI_RESET);
                 lungsFull = true;
@@ -27,7 +29,8 @@ public class Lungs extends Person implements Runnable{
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    System.err.println("Something wrong...");
+                    System.err.println("Breathing stopped");
+                    break;
                 }
                 System.out.println(ANSI_PURPLE + "Breathe out" + ANSI_RESET);
                 lungsFull = false;

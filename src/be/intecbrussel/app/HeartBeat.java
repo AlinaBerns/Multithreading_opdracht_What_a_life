@@ -21,7 +21,8 @@ public class HeartBeat extends Person implements Runnable{
             try {
                 Thread.sleep(milliSecondsBetweenBeats);
             } catch (InterruptedException e) {
-                System.err.println("Something wrong...");
+                System.err.println("The heart is stopped");
+                break;
             }
             System.out.println(ANSI_YELLOW + "-^^-^--^-Thump-^^-^-^--" + ANSI_RESET);
         }

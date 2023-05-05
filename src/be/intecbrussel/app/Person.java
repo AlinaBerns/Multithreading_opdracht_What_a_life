@@ -35,28 +35,26 @@ public class Person implements Runnable{
     //methods
     @Override
     public void run() {
-
-            for (int i = this.age; i < 100 ; i++) {
+            for (int i = this.age; i < 100; i++) {
                 try {
-                    int boundedRandomValue = ThreadLocalRandom.current().nextInt(10, 15);
+                    int boundedRandomValue = ThreadLocalRandom.current().nextInt(0, 20);
                     System.out.println(boundedRandomValue);
                     if (boundedRandomValue == 13) {
-                    break;
-                }
+                        break;
+                    }
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
             }
+            this.endLife();
  }
 
     public void startLife() {
      System.out.println(ANSI_GREEN + "Start life" + ANSI_RESET);
-     this.life.start();
-     this.heart.start();
-     this.breathing.start();
-
+        this.life.start();
+        this.heart.start();
+        this.breathing.start();
  }
 
     public void endLife() {
