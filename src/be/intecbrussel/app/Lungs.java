@@ -14,7 +14,6 @@ public class Lungs extends Person implements Runnable{
 
     @Override
     public void run() {
-
         while (true) {
             if (!lungsFull) {
                 try {

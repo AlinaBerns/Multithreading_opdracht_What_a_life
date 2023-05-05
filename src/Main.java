@@ -4,7 +4,7 @@ import be.intecbrussel.app.Person;
 
 public class Main {
     public static void main(String[] args) {
-        Person person = new Person("Jerry", 70, 5000);
+        Person person = new Person("Jerry", 70, 2000);
         person.startLife();
     }
 }

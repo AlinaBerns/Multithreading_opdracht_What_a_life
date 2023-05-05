@@ -1,15 +1,19 @@
 package be.intecbrussel.app;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Person implements Runnable{
 
    //properties
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_GREEN = "\u001B[32m";
     private String name;
     private int age;
     private Thread heart;
     private Thread breathing;
     private Thread life;
+
 
     //constructors
 
@@ -19,9 +23,9 @@ public class Person implements Runnable{
      this.name = name;
      this.age = age;
 
-     life = new Thread(this);
-     heart = new Thread(new HeartBeat(heartBeatMilliSeconds));
-     breathing = new Thread(new Lungs());
+     this.life = new Thread(this);
+     this.heart = new Thread(new HeartBeat(heartBeatMilliSeconds));
+     this.breathing = new Thread(new Lungs());
 
  }
 
@@ -32,37 +36,35 @@ public class Person implements Runnable{
     @Override
     public void run() {
 
-        Random random = new Random();
-        int x = random.nextInt(20);
-
             for (int i = this.age; i < 100 ; i++) {
                 try {
-                    x++;
-                    if (x == 13) {
-                        endLife();
+                    int boundedRandomValue = ThreadLocalRandom.current().nextInt(10, 15);
+                    System.out.println(boundedRandomValue);
+                    if (boundedRandomValue == 13) {
                     break;
                 }
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println(x);
+
             }
  }
 
-
-
     public void startLife() {
-     life.start();
-     heart.start();
-     breathing.start();
+     System.out.println(ANSI_GREEN + "Start life" + ANSI_RESET);
+     this.life.start();
+     this.heart.start();
+     this.breathing.start();
+
  }
 
     public void endLife() {
 
-     life.interrupt();
-     heart.interrupt();
-     breathing.interrupt();
+     System.out.println(ANSI_GREEN + "End life" + ANSI_RESET);
+     this.life.interrupt();
+     this.heart.interrupt();
+     this.breathing.interrupt();
 
     }
 }
